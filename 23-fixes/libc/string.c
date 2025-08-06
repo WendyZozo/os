@@ -75,3 +75,50 @@ int strcmp(char s1[], char s2[]) {
     }
     return s1[i] - s2[i];
 }
+
+int strncmp(const char *s1, const char *s2, int n) {
+    int i;
+    for (i = 0; i < n; i++) {
+        if (s1[i] != s2[i]) {
+            return s1[i] - s2[i];
+        }
+        if (s1[i] == '\0') {
+            return 0;
+        }
+    }
+    return 0;
+}
+
+char *strcpy(char *dest, const char *src) {
+    int i = 0;
+    while (src[i]) {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return dest;
+}
+
+char to_lower(char c) {
+    if (c >= 'A' && c <= 'Z') {
+        return c + 32;
+    }
+    return c;
+}
+
+int stricmp(const char* s1, const char* s2) {
+    while (*s1 && (to_lower(*s1) == to_lower(*s2))) {
+        s1++;
+        s2++;
+    }
+    return to_lower(*(unsigned char*)s1) - to_lower(*(unsigned char*)s2);
+}
+
+char* strcat(char* dest, const char* src) {
+    char* original_dest = dest;
+    while (*dest) {
+        dest++;
+    }
+    while ((*dest++ = *src++));
+    return original_dest;
+}
